@@ -1,0 +1,83 @@
+/*** Start Hero Section *****/
+
+.hero {
+  padding-top: calc(67.4px);
+  height: 100vh;
+  width: 100%;
+  /* position: relative; */
+  /* overflow: hidden; */
+}
+
+.frame {
+  align-items: center;
+  background: radial-gradient(
+    100% 100% at 80% 0%,
+    rgba(255, 63, 63, 0.6) 0%,
+    rgba(240, 135, 80, 0.7) 35.9%,
+    rgba(245, 205, 100, 0.7) 64.9%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  height: 100%;
+  justify-content: center;
+  /* position: relative; */
+  z-index: -1;
+}
+
+.box {
+  height: 90px;
+  width: 87px;
+}
+
+.box .vector {
+  height: 90px;
+  /* position: fixed; */
+  width: 87px;
+}
+
+.label-h1 {
+  height: 172px;
+  width: 614px;
+}
+
+.label-h1 .light-up-your-day {
+  color: #aa0000;
+  font-family: 'Abril Fatface-Regular', Helvetica;
+  font-size: 64px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  /* position: fixed; */
+  text-align: center;
+  width: 614px;
+}
+
+.labelSlogan {
+  height: 64px;
+  width: 290px;
+}
+
+.labelSlogan .unforgettable {
+  color: #870000;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  /* position: fixed; */
+  text-align: center;
+  margin: 0;
+}
+
+/*** End Hero Section *****/
+/*** Start Upcoming Events Section *****/
+
+.upcoming-events-section {
+  height: 100vh;
+  background-color: #e0e0e0;
+}
+
+/*** End Upcoming Events Section *****/
