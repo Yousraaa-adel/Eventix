@@ -1,11 +1,9 @@
 /*** Start Hero Section *****/
 
 .hero {
-  padding-top: calc(67.4px);
+  padding-top: 56px;
   height: 100vh;
   width: 100%;
-  /* position: relative; */
-  /* overflow: hidden; */
 }
 
 .frame {
@@ -23,7 +21,6 @@
   gap: 28px;
   height: 100%;
   justify-content: center;
-  /* position: relative; */
   z-index: -1;
 }
 
@@ -34,7 +31,6 @@
 
 .box .vector {
   height: 90px;
-  /* position: fixed; */
   width: 87px;
 }
 
@@ -50,7 +46,6 @@
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
-  /* position: fixed; */
   text-align: center;
   width: 614px;
 }
@@ -67,7 +62,6 @@
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
-  /* position: fixed; */
   text-align: center;
   margin: 0;
 }
@@ -75,9 +69,50 @@
 /*** End Hero Section *****/
 /*** Start Upcoming Events Section *****/
 
-.upcoming-events-section {
-  height: 100vh;
-  background-color: #e0e0e0;
+.upcoming-events {
+  padding: 0.3rem 0;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.filters {
+  align-items: center;
+  display: flex;
+  gap: 319px;
+  position: relative;
+}
+
+.filters .upcoming-events {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.filters .design-component-instance-node {
+  flex: 0 0 auto !important;
+}
+
+.events-container {
+  padding-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.view-more-btn {
+  width: 16%;
+  height: 35px;
 }
 
 /*** End Upcoming Events Section *****/

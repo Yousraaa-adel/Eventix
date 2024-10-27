@@ -3,9 +3,9 @@
   grid-template-columns: 1.7fr 1fr;
   box-shadow: 0px 4px 15px #00000040;
   align-items: center;
-  height: 4rem;
+  height: 3.5rem;
   padding: 0 3.2rem;
-  border-radius: 0.9rem;
+  /* border-radius: 0.9rem; */
   position: fixed;
   width: 100%;
   z-index: 100000;
