@@ -116,3 +116,90 @@
 }
 
 /*** End Upcoming Events Section *****/
+/*** Start Why Us Section *****/
+.why-us {
+  padding: 0.3rem 0;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.why-us-text {
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin: 5px 0;
+}
+
+.features-frame {
+  align-items: center;
+  display: flex;
+  gap: 45px;
+  justify-content: center;
+  position: relative;
+  padding: 40px 0;
+}
+
+.features-div {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+  width: 30%;
+}
+
+.features-frame .image-vector {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: 80px;
+  width: 25%;
+  position: relative;
+}
+
+.features-frame .image-vector .features-img {
+  align-self: stretch;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+}
+
+.features-div-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.features-div-2 .features-text-wrapper {
+  align-self: stretch;
+  color: #000000;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.features-frame .features-div-2 .features-text-wrapper p {
+  color: #000000;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: 100%;
+}
+
+/*** End Why Us Section *****/

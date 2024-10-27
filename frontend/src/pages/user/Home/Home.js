@@ -12,6 +12,7 @@ function Home() {
     <>
       <Hero />
       <UpcomingEvents />
+      <WhyUs />
     </>
   );
 }
@@ -146,5 +147,82 @@ function UpcomingEvents() {
     </MainContainer>
   );
 }
+
+/*** End Upcoming Events Section *****/
+/*** Start Why Us Section *****/
+
+function WhyUs() {
+  return (
+    <MainContainer>
+      <section className="why-us">
+        <Label>Why Us?</Label>
+        <p className="why-us-text">
+          Lorem ipsum dolor sit amet, consecteturA adipiscing elit. Aliquam
+          consectetur tristique velit nec tempor. Etiam mattis tincidunt
+          placerat. Vestibulum condimentum nulla nulla, id lacinia est
+          condimentum sed. Sed eu magna sit amet libero feugiat lobortis sit
+          amet sit amet ex. Mauris nec aliquet mi. Duis risus mi, semper in
+          mattis sit amet, fringilla eu nulla. fermentum porta non id nunc.
+          Maecenas nec tortor et nibh vulputate mollis. Praesent ac pellentesque
+          dolor, quis pretium libero. Proin id porta lectus, non lobortis ante.
+          Morbi non felis quis metus dapibus pretium. Aenean nec dui sit amet
+          metus rhoncus viverra in vel libero.Aenean nec dui sit amet. Praesent
+          ac pellentesque dolor, quis pretium libero. Proin id porta lectus, non
+          lobortis ante. Morbi non felis quis metus dapibus pretium. Aenean nec
+          dui sit amet metus rhoncus viverra in vel libero.Aenean nec dui sit
+          amet
+        </p>
+        <Features />
+      </section>
+    </MainContainer>
+  );
+}
+
+function Features() {
+  return (
+    <div className="features-frame">
+      <div className="features-div">
+        <div className="image-vector">
+          <img className="features-img" alt="icon" src="/images/fastIcon.jpg" />
+        </div>
+        <div className="features-div-2">
+          <div className="features-text-wrapper">Fast</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            consectetur tristique velit nec tempor.
+          </p>
+        </div>
+      </div>
+
+      <div className="features-div">
+        <div className="image-vector">
+          <img className="features-img" alt="icon" src="/images/easyIcon.jpg" />
+        </div>
+        <div className="features-div-2">
+          <div className="features-text-wrapper">Easy</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            consectetur tristique velit nec tempor.
+          </p>
+        </div>
+      </div>
+
+      <div className="features-div">
+        <div className="image-vector">
+          <img className="features-img" alt="icon" src="/images/safeIcon.jpg" />
+        </div>
+        <div className="features-div-2">
+          <div className="features-text-wrapper">Safe</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            consectetur tristique velit nec tempor.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/*** End Why Us Section *****/
 
 export default Home;
