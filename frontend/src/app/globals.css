@@ -20,18 +20,8 @@ body::-webkit-scrollbar-thumb:hover {
 
 html,
 body {
-  height: 100%;
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
+  height: 100%;
   width: 100%;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
