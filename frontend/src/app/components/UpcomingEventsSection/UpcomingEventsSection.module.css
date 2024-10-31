@@ -1,0 +1,24 @@
+.upcomingEvents {
+  padding: 0.3rem 0;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.filters {
+  align-items: center;
+  display: flex;
+  gap: 319px;
+  position: relative;
+}
+
+.filters .upcomingEvents {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.filters .design-component-instance-node {
+  flex: 0 0 auto !important;
+}

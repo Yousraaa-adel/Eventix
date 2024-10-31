@@ -1,0 +1,14 @@
+.sideUpcomingSection {
+  padding-top: 66px;
+  padding-bottom: 15px;
+  height: 100vh !important;
+  width: 100%;
+}
+
+.comingEvents {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

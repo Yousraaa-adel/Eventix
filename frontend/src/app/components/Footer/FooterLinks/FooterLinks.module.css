@@ -1,0 +1,21 @@
+.FooterLinks {
+  height: 90%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.FooterLinks .pageLink {
+  list-style-type: none;
+}
+
+.FooterLinks .pageLink a {
+  text-decoration: none;
+  color: #1e1e1e;
+  font-family: 'Afcade-Regular', Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+}

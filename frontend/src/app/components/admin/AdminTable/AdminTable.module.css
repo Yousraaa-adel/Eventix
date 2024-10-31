@@ -1,0 +1,35 @@
+.tableCont {
+  width: 100%;
+  height: calc(100% - 30px);
+  border-collapse: collapse;
+  outline: none;
+}
+
+.tableCont thead {
+  background-color: #ff550080;
+  height: 30px;
+}
+
+/* .tableCont tbody {
+  background-color: #ff57000d;
+} */
+
+.tdColor {
+  background-color: #ff57000d;
+}
+
+.tableCont tr {
+  text-align: center;
+}
+
+.tableCont th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.tableCont th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.tableCont tbody tr {
+  border-bottom: 1px solid #f69350;
+}

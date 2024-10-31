@@ -1,0 +1,19 @@
+.brief {
+  width: 30%;
+  height: 90%;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.brief .logo {
+  height: 20px;
+}
+
+.brief p {
+  align-self: stretch;
+  font-family: 'Afcade-Regular', Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  padding-right: 15px;
+}

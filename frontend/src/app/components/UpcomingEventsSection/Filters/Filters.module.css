@@ -1,0 +1,14 @@
+.filters {
+  align-items: center;
+  display: flex;
+  gap: 319px;
+  position: relative;
+}
+
+.filters .upcomingEventsFrame {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}

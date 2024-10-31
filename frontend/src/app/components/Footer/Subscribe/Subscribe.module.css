@@ -1,0 +1,70 @@
+.subscribe {
+  height: 100%;
+  align-items: center;
+  background-color: #ffffff80;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 30%;
+}
+
+.subscribe .div {
+  height: 40%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.divWrapper {
+  width: 100%;
+}
+
+.divWrapper input {
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+.divWrapper input:focus {
+  border: 1px solid #f69350;
+  outline: none;
+}
+
+.subscribe .div .textWrapper {
+  font-size: 15px;
+  font-family: 'Afacad-Medium', Helvetica;
+  font-weight: 500;
+  margin: 0;
+  padding-top: 5px;
+}
+
+.subscribe .div .p {
+  width: 80%;
+  font-size: 12px;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-weight: 400;
+  margin: 0;
+  color: #000000;
+}
+
+.subscribe .div2 {
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscribe .div2 .subscribeBtn {
+  width: 40%;
+}
+
+.btn {
+  width: 20%;
+}

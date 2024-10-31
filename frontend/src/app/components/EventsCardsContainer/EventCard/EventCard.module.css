@@ -1,0 +1,281 @@
+.eventCard {
+  align-items: center;
+  background-color: #ff57001a;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px;
+  position: relative;
+  width: 32%;
+  border: 1px solid #f69350;
+}
+
+.sideUpcomingEvent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
+  gap: 1px;
+  padding: 5px;
+  border: 1px solid #f69350;
+  border-radius: 10px;
+}
+
+.sideUpcomingEventFrame {
+  /* background-color: red; */
+  width: 70%;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+.sideUpcomingEventImg {
+  width: 30%;
+  /* height: 120px; */
+}
+
+.sideEvent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sideEventTop {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sideEventInfo {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 3px;
+}
+
+.sideEventWrapper {
+  display: flex;
+}
+
+.sideEventName {
+  color: #1e1e1e;
+  flex: 1;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: relative;
+}
+
+.sideEventDescription {
+  margin: 8px 0;
+}
+
+.sideEventCardFrame2 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 30%;
+}
+
+.sideEventPrice {
+  display: flex;
+  gap: 10px;
+}
+
+.sideEventDetailsBtn {
+  height: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-left: 60px;
+}
+
+.sideEventBtnLink {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.eventCard .rectangle {
+  align-self: stretch;
+  height: 120px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .eventCardFrame {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px 10px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .eventCardFrameDiv {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 11px;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .top {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .eventType {
+  align-self: stretch;
+  color: #1e1e1e;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.eventCard .event {
+  align-items: flex-start;
+  /* align-self: stretch; */
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  width: 100%;
+}
+
+.eventInfo {
+  align-items: center;
+  /* align-self: stretch; */
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  gap: 58px;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .eventNameWrapper {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .eventName {
+  color: #1e1e1e;
+  flex: 1;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: relative;
+}
+
+.eventCard .eventDescription {
+  align-self: stretch;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  margin: 0;
+}
+
+.eventCard .evetnCardFrame2 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  position: relative;
+  width: 80%;
+}
+
+.eventCard .ticketPrice {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 5px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.eventCard .vector2 {
+  height: 10.83px;
+  margin: -0.75px;
+  position: relative;
+  width: 13.5px;
+}
+
+.eventCard .text2 {
+  color: #1e1e1e;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.eventCard .detailsBtn {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.eventCard .secondaryButtonInstance {
+  align-self: stretch !important;
+  background-color: #f6936033;
+  display: flex !important;
+  width: 80% !important;
+  justify-content: center;
+  height: 30px;
+  border-radius: 20px;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1e1e1e;
+  font-family: 'Afacad-Regular', Helvetica;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.eventCard .secondaryButtonInstance:hover {
+  background-color: rgba(246, 147, 96, 0.5);
+}

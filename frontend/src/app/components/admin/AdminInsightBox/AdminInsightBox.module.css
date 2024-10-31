@@ -1,0 +1,18 @@
+.insightBox {
+  display: flex;
+  width: 20%;
+  height: 100%;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.insightBox .stat {
+  width: 20%;
+}
+
+.insightBox .statLabel {
+}

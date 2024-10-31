@@ -1,0 +1,14 @@
+.admiSideLabel {
+  height: 30px;
+  display: flex;
+  width: 30%;
+  align-items: center;
+}
+
+.admiSideLabel p {
+  width: 100%;
+  margin: 0;
+  font-family: 'Afcade-Medium', Helvetica;
+  font-weight: 500;
+  font-size: 26px;
+}

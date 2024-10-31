@@ -1,0 +1,16 @@
+.SectionTopLabelDix {
+  width: 80%;
+  height: 40%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.SectionTopLabelDix .SectionTopLabelText {
+  color: #920000;
+  font-family: 'Abril Fatface-Regular', Helvetica;
+  font-size: 28px;
+  font-weight: 400;
+  margin: 0;
+}

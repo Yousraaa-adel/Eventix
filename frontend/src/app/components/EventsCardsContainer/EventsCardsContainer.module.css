@@ -1,0 +1,20 @@
+.eventsContainer {
+  /* padding-top: 1rem; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.viewMoreBtn {
+  width: 16%;
+  height: 35px;
+}

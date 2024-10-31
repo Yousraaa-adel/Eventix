@@ -1,0 +1,35 @@
+.div2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 5px;
+  position: relative;
+}
+
+.icon {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 12px;
+}
+
+.vector {
+  flex: 1;
+  flex-grow: 1;
+  height: 12px;
+  position: relative;
+}
+
+.text {
+  color: #1e1e1e;
+  font-family: 'Afacad-Regular', Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
