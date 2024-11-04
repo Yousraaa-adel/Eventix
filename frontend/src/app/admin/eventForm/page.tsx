@@ -68,7 +68,7 @@ const EventForm = () => {
     setLocation('');
     setImage('');
     setBrief('');
-    setTicketsBooked('');
+    setTicketsBooked('0');
     setStatus('upcoming'); // Reset to default status
   };
 
@@ -179,12 +179,12 @@ const EventForm = () => {
           </div>
           <div className={styles.previewCont}>
             <EventCard
-              eventCategory="workshop"
-              eventName="Coffee 101"
-              eventDate="15/10"
-              eventTime="16:30"
-              eventLocation="Downtown"
-              eventPrice="40"
+              eventCategory={category}
+              eventName={eventName}
+              eventDate={date}
+              eventTime={time}
+              eventLocation={location}
+              eventPrice={eventPrice}
               coverImgSrc="/images/rectangleImage.png"
               iconImageSrc={{
                 calendar: '/images/calendarIcon.jpg',
@@ -198,9 +198,7 @@ const EventForm = () => {
                 location: 'Location Icon',
                 ticket: 'Ticket Icon',
               }}
-              eventBrief="Lorem ipsum dolor sit amet, consectetur a nulla, id lacinia est
-            condimentum sed. Sed eu magna sit amet libero feugiat lobortis sit
-            amet sit amet ex."
+              eventBrief={brief}
             />
           </div>
         </div>

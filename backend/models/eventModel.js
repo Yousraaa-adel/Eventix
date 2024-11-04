@@ -42,7 +42,8 @@ const eventSchema = new mongoose.Schema({
   },
   ticketsBooked: {
     type: String,
-    // required: [true, 'An event must have a tickets booked'],
+    required: [true, 'An event must have a tickets booked'],
+    default: '0',
   },
   status: {
     type: String,

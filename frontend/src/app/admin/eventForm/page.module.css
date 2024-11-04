@@ -50,7 +50,8 @@
   font-size: 16px;
 }
 
-.fieldBox input {
+.fieldBox input,
+.fieldBox textarea {
   height: 100%;
   border: none;
   padding: 3px 8px;
@@ -59,10 +60,15 @@
   color: #787878;
 }
 
-.fieldBox input:focus {
+.fieldBox input:focus,
+.fieldBox textarea:focus {
   outline: none;
 }
 
 .addEventBtn {
   width: 30%;
+}
+
+.addEventBtn button {
+  width: 100%;
 }
