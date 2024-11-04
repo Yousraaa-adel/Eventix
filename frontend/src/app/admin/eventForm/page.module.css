@@ -15,7 +15,7 @@
   height: calc(100vh - 166px);
   display: flex;
   flex-direction: row;
-  padding: 20px 0;
+  /* padding: 20px 0; */
   gap: 50px;
 }
 

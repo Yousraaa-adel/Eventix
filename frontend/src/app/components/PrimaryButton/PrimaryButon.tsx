@@ -5,11 +5,12 @@ import styles from './PrimaryButton.module.css';
 interface PrimaryButtonProps {
   children: ReactNode;
   href: string;
+  type?: string;
 }
 
-function PrimaryButton({ children, href }: PrimaryButtonProps) {
+function PrimaryButton({ children, href, type }: PrimaryButtonProps) {
   return (
-    <Link href={href} className={styles.primaryButton}>
+    <Link href={href} type={type} className={styles.primaryButton}>
       {children}
     </Link>
   );

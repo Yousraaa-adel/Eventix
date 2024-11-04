@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const eventRouter = require('./routes/eventRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -11,6 +12,12 @@ if (process.env.NODE_ENV === 'development') {
   // Logging entries middleware
   app.use(morgan('dev'));
 }
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  }),
+);
 
 app.use(express.json());
 

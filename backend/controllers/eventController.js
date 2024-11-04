@@ -50,6 +50,10 @@ exports.getEvent = async (req, res) => {
 };
 
 exports.ceateEvent = async (req, res) => {
+  // console.log('Entire request:', req);
+  // console.log('Request headers:', req.headers);
+  console.log('Data received for event creation:', req.body);
+
   try {
     const event = await Event.create(req.body);
 
