@@ -20,7 +20,7 @@
 }
 
 .eventFormCont {
-  width: 50%;
+  width: 55%;
   /* background-color: red; */
   display: flex;
   align-items: center;
@@ -30,11 +30,11 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 85%;
   height: 90%;
   /* background-color: beige; */
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .fieldBox {
@@ -50,9 +50,15 @@
   font-size: 16px;
 }
 
+.brief {
+  height: 20%;
+}
+
 .fieldBox input,
-.fieldBox textarea {
+.fieldBox textarea,
+.fieldBox select {
   height: 100%;
+  width: 60%;
   border: none;
   padding: 3px 8px;
   border-radius: 8px;
@@ -61,7 +67,8 @@
 }
 
 .fieldBox input:focus,
-.fieldBox textarea:focus {
+.fieldBox textarea:focus,
+.fieldBox select:focus {
   outline: none;
 }
 

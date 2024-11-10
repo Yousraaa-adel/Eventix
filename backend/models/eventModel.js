@@ -29,7 +29,7 @@ const eventSchema = new mongoose.Schema({
   location: {
     type: String,
     required: [true, 'An event must have a location'],
-    enum: ['Maadi', 'Downtown', 'Mohandseen'],
+    enum: ['Maadi', 'Downtown', 'Zamalek'],
   },
   image: {
     type: String,

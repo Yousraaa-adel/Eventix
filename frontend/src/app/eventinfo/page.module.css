@@ -3,3 +3,163 @@
   min-height: 100vh !important;
   width: 100%;
 }
+
+.eventInfo .eventDetailsCont {
+  width: 100%;
+  height: calc(100vh - 140px);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eventDetailsCont .cont {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  gap: 35px;
+}
+
+.imgCont {
+  width: 40%;
+}
+
+.eventDetailsCont .cont img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.bookingBigContainer {
+  width: 100%;
+  height: 62%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.linkBigCont {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkBigCont .linkCont {
+  height: 50%;
+  width: 70%;
+}
+
+.bookingForm {
+  width: 38%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticketBigContainer {
+  height: 70%;
+  width: 70%;
+  background-color: #dc4b0033;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ticketCont {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.ticketCont .priceCont,
+.ticketCont .ticketsNeededCont {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.counterCont {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+.counterCont .neededTitle {
+  font-family: 'Afcade-Medium', Helvetica;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.counterCont .counter {
+  width: 25%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counterCont .counter .counterMore,
+.counterCont .counter .counterLess,
+.counterCont .counter .counterCount {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.counterCont .counter .counterLess,
+.counterCont .counter .counterMore {
+  background-color: #f69360;
+}
+
+.counterCont .counter .counterCount {
+  background-color: #ffffff;
+}
+
+.counterCont .counter .counterMore {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.counterCont .counter .counterLess {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.confirmBtnCont {
+  width: 90%;
+  height: 15%;
+}
+
+.confirmBtnCont button {
+  width: 100%;
+  height: 100%;
+  background-color: #f69360;
+  border: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.confirmBtnCont button:hover {
+  background-color: rgba(243, 112, 25, 0.9);
+}

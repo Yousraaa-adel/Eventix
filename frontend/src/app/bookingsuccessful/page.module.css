@@ -1,0 +1,60 @@
+.bookinfSuccessful {
+  padding-top: 56px;
+  min-height: 100vh !important;
+  width: 100%;
+}
+
+.bookinfSuccessful .smallCont {
+  width: 60%;
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bookinfSuccessful .smallCont .iconCont {
+  width: 30%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #ff570033;
+  border: 0;
+}
+
+.successTextCont {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.successTextCont .successTitle {
+}
+
+.successTextCont p {
+  margin: 0;
+}
+
+.successTextCont .backBtn {
+  height: 10%;
+}
+
+.successTextCont .backBtn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}
+
+.textIcon {
+  vertical-align: middle;
+}
+
+.shareCont {
+  height: 20%;
+}

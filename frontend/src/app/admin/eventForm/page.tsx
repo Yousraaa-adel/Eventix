@@ -12,32 +12,56 @@ import PrimaryButton from '@/app/components/PrimaryButton/PrimaryButon';
 import Link from 'next/link';
 
 const EventForm = () => {
-  const [eventName, setEventName] = useState('');
-  const [category, setCategory] = useState('');
-  const [eventPrice, setEventPrice] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [location, setLocation] = useState('');
+  const [eventName, setEventName] = useState('Preview  Event');
+  const [category, setCategory] = useState('workshop');
+  const [eventPrice, setEventPrice] = useState('50');
+  const [date, setDate] = useState('11/5/2024');
+  const [time, setTime] = useState('16:30');
+  const [location, setLocation] = useState('Maadi');
   const [image, setImage] = useState('');
-  const [brief, setBrief] = useState('');
+  const [brief, setBrief] = useState(
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.'
+  );
+  const [imagePreview, setImagePreview] = useState(
+    '/images/rectangleImage.png'
+  );
   const [ticketsBooked, setTicketsBooked] = useState('');
   const [status, setStatus] = useState('upcoming');
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]; // Get the selected file
+    if (file) {
+      const reader = new FileReader(); // Create a new FileReader
+
+      // When the file is loaded, set the preview to the base64 image string
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string); // Set the preview to the base64 string
+      };
+
+      // Read the file as a data URL (base64 string)
+      reader.readAsDataURL(file);
+
+      setImage(file); // Store the actual file for submission to the server later
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const eventData = {
-      eventName,
-      category,
-      eventPrice,
-      date,
-      time,
-      location,
-      image,
-      brief,
-      ticketsBooked,
-      status,
-    };
+    const eventData = new FormData();
+
+    eventData.append('eventName', eventName);
+    eventData.append('category', category);
+    eventData.append('eventPrice', eventPrice);
+    eventData.append('date', date);
+    eventData.append('time', time);
+    eventData.append('location', location);
+    eventData.append('brief', brief);
+    eventData.append('ticketsBooked', ticketsBooked);
+    eventData.append('status', status);
+    if (image) {
+      eventData.append('image', image); // Append the image file to FormData
+    }
 
     try {
       const response = await axios.post(
@@ -45,7 +69,7 @@ const EventForm = () => {
         eventData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -67,7 +91,10 @@ const EventForm = () => {
     setTime('');
     setLocation('');
     setImage('');
-    setBrief('');
+    setBrief(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.'
+    );
+    setImagePreview('/images/rectangleImage.png');
     setTicketsBooked('0');
     setStatus('upcoming'); // Reset to default status
   };
@@ -89,27 +116,35 @@ const EventForm = () => {
                   name="eventName"
                   type="text"
                   required
-                  value={eventName} // Bind to state
+                  value={eventName}
                   placeholder="Enter event name"
-                  onChange={(e) => setEventName(e.target.value)} // Set state directly
+                  onChange={(e) => setEventName(e.target.value)}
                 />
               </div>
               <div className={styles.fieldBox}>
                 <div className={styles.placeholderTitle}>Category</div>
-                <input
+                <select
                   name="category"
-                  value={category} // Bind to state
-                  placeholder="Enter event category"
-                  onChange={(e) => setCategory(e.target.value)} // Set state directly
-                />
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    Select event category
+                  </option>
+                  <option value="workshop">Workshop</option>
+                  <option value="educational">Educational</option>
+                  <option value="cultural">Cultural</option>
+                </select>
               </div>
               <div className={styles.fieldBox}>
                 <div className={styles.placeholderTitle}>Event Date</div>
                 <input
                   name="date"
                   type="date"
-                  value={date} // Bind to state
-                  onChange={(e) => setDate(e.target.value)} // Set state directly
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.fieldBox}>
@@ -117,8 +152,9 @@ const EventForm = () => {
                 <input
                   name="time"
                   type="time"
-                  value={time} // Bind to state
-                  onChange={(e) => setTime(e.target.value)} // Set state directly
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.fieldBox}>
@@ -126,19 +162,27 @@ const EventForm = () => {
                 <input
                   name="eventPrice"
                   type="number"
-                  value={eventPrice} // Bind to state
+                  value={eventPrice}
                   placeholder="Enter event price"
-                  onChange={(e) => setEventPrice(e.target.value)} // Set state directly
+                  onChange={(e) => setEventPrice(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.fieldBox}>
                 <div className={styles.placeholderTitle}>Location</div>
-                <input
+                <select
                   name="location"
-                  value={location} // Bind to state
-                  placeholder="Enter event location"
-                  onChange={(e) => setLocation(e.target.value)} // Set state directly
-                />
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    Select event location
+                  </option>
+                  <option value="Maadi">Maadi</option>
+                  <option value="Downtown">Downtown</option>
+                  <option value="Zamalek">Zamalek</option>
+                </select>
               </div>
               <div className={styles.fieldBox}>
                 <div className={styles.placeholderTitle}>Tickets Booked</div>
@@ -146,8 +190,9 @@ const EventForm = () => {
                   name="ticketsBooked"
                   type="number"
                   placeholder="Enter event tickets booked"
-                  value={ticketsBooked} // Bind to state
-                  onChange={(e) => setTicketsBooked(e.target.value)} // Set state directly
+                  value={ticketsBooked}
+                  onChange={(e) => setTicketsBooked(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.fieldBox}>
@@ -155,19 +200,27 @@ const EventForm = () => {
                 <input
                   name="status"
                   placeholder="Enter event status"
-                  value={status} // Bind to state
-                  onChange={(e) => setStatus(e.target.value)} // Set state directly
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.fieldBox}>
-                <div className={`${styles.placeholderTitle} ${styles.brief}`}>
-                  Brief
-                </div>
+                <div className={styles.placeholderTitle}>Upload Image</div>
+                <input
+                  type="file"
+                  accept="image/*" // Allows only image files
+                  onChange={handleImageChange} // Set the first file to state
+                />
+              </div>
+              <div className={`${styles.fieldBox} ${styles.brief}`}>
+                <div className={`${styles.placeholderTitle}`}>Brief</div>
                 <textarea
                   name="brief"
                   placeholder="Enter event brief"
-                  value={brief} // Bind to state
-                  onChange={(e) => setBrief(e.target.value)} // Set state directly
+                  value={brief}
+                  onChange={(e) => setBrief(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.addEventBtn}>
@@ -185,7 +238,8 @@ const EventForm = () => {
               eventTime={time}
               eventLocation={location}
               eventPrice={eventPrice}
-              coverImgSrc="/images/rectangleImage.png"
+              coverImgSrc={imagePreview}
+              coverImgAlt="Cover Image"
               iconImageSrc={{
                 calendar: '/images/calendarIcon.jpg',
                 time: '/images/timeIcon.jpg',
