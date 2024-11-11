@@ -5,13 +5,21 @@ import Filters from '../UpcomingEventsSection/Filters/Filters';
 interface SectionTopProps {
   labelText: string;
   isCategoryFilter?: boolean; // Accept the prop
+  onChoiceClick: (choice: string) => void;
 }
 
-function SectionTop({ labelText, isCategoryFilter }: SectionTopProps) {
+function SectionTop({
+  labelText,
+  isCategoryFilter = false,
+  onChoiceClick,
+}: SectionTopProps) {
   return (
     <div className={styles.sectionTop}>
       <SectionLabel labelText={labelText} />
-      <Filters isCategoryFilter={isCategoryFilter} />
+      <Filters
+        isCategoryFilter={isCategoryFilter}
+        onChoiceClick={onChoiceClick}
+      />
     </div>
   );
 }

@@ -11,11 +11,13 @@ import styles from './page.module.css';
 import EventsCardsContainer from '../components/EventsCardsContainer/EventsCardsContainer';
 import FindEventsAreaSection from '../components/FindEventsAreaSection/FindEventsAreaSection';
 import SideUpcomingSection from '../components/SideUpcomingSection/SideUpcomingSection';
+import { EventCardProps } from '../components/EventsCardsContainer/EventCard/EventCard';
 
 function Events() {
   const [showButton, setShowButton] = useState(false);
-  const [events, setEvents] = useState([]); // State to hold the fetched events
+  const [events, setEvents] = useState<EventCardProps[]>([]); // State to hold the fetched events
   const [loading, setLoading] = useState(true); // State to track loading status
+  const [selectedCategory, setSelectedCategory] = useState('All'); // Track selected category
 
   // Function to fetch events from the backend
   const fetchEvents = async () => {
@@ -28,8 +30,6 @@ function Events() {
         setEvents(fetchedEvents); // Update only if the data has changed
       }
 
-      console.log('Fetched Events:', fetchEvents); // Log fetched data before setting state
-
       setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -37,14 +37,21 @@ function Events() {
     }
   };
 
+  // Filter the events based on the selected category
+  const filteredEvents =
+    selectedCategory === 'All'
+      ? events
+      : events.filter((event) => event.category === selectedCategory);
+
   // Fetch events when the component mounts
   useEffect(() => {
     fetchEvents();
   }, []); // Empty dependency array to run once when the component mounts
 
-  useEffect(() => {
-    console.log('Updated events:', events); // This will log the events after state is updated
-  }, [events]);
+  // Handle category selection from the Filters component
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category); // Update the selected category
+  };
 
   return (
     <>
@@ -55,13 +62,14 @@ function Events() {
           <SectionTop
             labelText="Find Your Type of Event"
             isCategoryFilter={true}
+            onChoiceClick={handleCategoryChange}
           />
           {/* Show loading spinner if events are being fetched */}
           {loading ? (
             <div>Loading...</div>
           ) : (
             // If events are fetched, pass them to the EventsCardsContainer
-            <EventsCardsContainer events={events} />
+            <EventsCardsContainer events={filteredEvents} />
           )}
           <FindEventsAreaSection isCategoryFilter={false} />
           <SideUpcomingSection />

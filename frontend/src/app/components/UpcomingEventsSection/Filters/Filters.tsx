@@ -7,22 +7,18 @@ import styles from './Filters.module.css';
 
 interface FiltersProps {
   isCategoryFilter: boolean; // Accept the prop
+  onChoiceClick: (choice: string) => void; // Callback to update the selected filter choice
 }
 
-function Filters({ isCategoryFilter }: FiltersProps) {
+function Filters({ isCategoryFilter, onChoiceClick }: FiltersProps) {
   // State to track the selected choice (category or area)
   const [selectedChoice, setSelectedChoice] = useState<string>('All');
 
   // Use the prop directly instead of local state
   const filterType = isCategoryFilter; // true = categories, false = areas
 
-  // Handle choice click (will be used for both category and area)
-  const handleChoiceClick = (choice: string) => {
-    setSelectedChoice(choice);
-  };
-
   // Define the available choices based on the filter type (category or area)
-  const categoryChoices = ['All', 'Educational', 'Entertainment', 'Workshops'];
+  const categoryChoices = ['All', 'educational', 'entertainment', 'workshop'];
   const areaChoices = ['All', 'Maadi', 'Downtown', 'Zamalek'];
 
   // Select the appropriate list of choices based on the current filter type
@@ -38,7 +34,10 @@ function Filters({ isCategoryFilter }: FiltersProps) {
             className={styles.designComponentInstanceNode}
             property1={selectedChoice === choice ? 'selected' : 'default'}
             text={choice}
-            onClick={() => handleChoiceClick(choice)}
+            onClick={() => {
+              setSelectedChoice(choice); // Update local state for UI
+              onChoiceClick(choice); // Trigger parent callback to fetch filtered events
+            }}
           />
         ))}
       </div>

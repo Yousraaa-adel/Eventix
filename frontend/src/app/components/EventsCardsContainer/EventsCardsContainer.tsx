@@ -41,10 +41,7 @@ function EventsCardsContainer({
       <div className={styles.cardsContainer}>
         {eventsToDisplay?.length > 0 ? (
           eventsToDisplay.map((eventItem) => {
-            console.log('Event data:', eventItem);
-
-            // Log eventDate explicitly
-            console.log('Event Date:', eventItem.date);
+            // console.log('Event data:', eventItem);
             // Parse the eventDate safely
             const eventDate = new Date(eventItem.date);
             const isValidDate = !isNaN(eventDate.getTime());
