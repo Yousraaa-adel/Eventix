@@ -13,13 +13,28 @@ exports.checkID = async (req, res, next, val) => {
 
 exports.getAllEvents = async (req, res) => {
   try {
-    const allEvents = await Event.find();
+    // Destructure category and location from query parameters
+    const { category, location } = req.query;
+
+    // Build the filter object based on query parameters
+    let filter = {};
+
+    if (category) {
+      filter.category = category; // Filter by category if provided
+    }
+
+    if (location) {
+      filter.location = location; // Filter by location if provided
+    }
+
+    // Find the events that match the filter
+    const events = await Event.find(filter);
 
     res.status(200).json({
       status: 'success',
-      results: allEvents.length,
+      results: events.length,
       data: {
-        allEvents,
+        events,
       },
     });
   } catch (err) {
@@ -51,7 +66,7 @@ exports.getEvent = async (req, res) => {
 
 exports.createEvent = async (req, res) => {
   console.log('Data received for event creation:', req.body);
-  console.log('Uploaded file:', req.file);
+  // console.log('Uploaded file:', req.file);
 
   try {
     const event = await Event.create({

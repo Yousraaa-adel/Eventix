@@ -4,13 +4,14 @@ import Filters from '../UpcomingEventsSection/Filters/Filters';
 
 interface SectionTopProps {
   labelText: string;
+  isCategoryFilter?: boolean; // Accept the prop
 }
 
-function SectionTop({ labelText }: SectionTopProps) {
+function SectionTop({ labelText, isCategoryFilter }: SectionTopProps) {
   return (
     <div className={styles.sectionTop}>
       <SectionLabel labelText={labelText} />
-      <Filters />
+      <Filters isCategoryFilter={isCategoryFilter} />
     </div>
   );
 }

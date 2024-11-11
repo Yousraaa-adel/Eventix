@@ -1,16 +1,17 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import styles from './EventCard.module.css';
 import IconInfo from './IconInfo/IconInfo';
 
-interface EventCardProps {
-  eventCategory: string;
+export interface EventCardProps {
+  _id?: string;
+  category: string;
   eventName: string;
-  eventBrief: string;
-  eventPrice: string;
-  eventDate: string;
-  eventTime: string;
-  eventLocation: string;
+  brief: string;
+  price: string;
+  date: string | Date;
+  time: string;
+  location: string;
   coverImgSrc?: string;
   coverImgAlt?: string;
   iconImageSrc: {
@@ -29,141 +30,158 @@ interface EventCardProps {
   isSideUpcomingEvent?: boolean;
 }
 
-function EventCard({
-  eventCategory,
-  eventName,
-  eventBrief,
-  eventPrice,
-  eventDate,
-  eventTime,
-  eventLocation,
-  coverImgSrc,
-  coverImgAlt,
-  iconImageSrc,
-  iconImgAlt,
-  showCoverImg = true,
-  isSideUpcomingEvent = false,
-}: EventCardProps) {
-  return (
-    <div
-      className={
-        isSideUpcomingEvent ? styles.sideUpcomingEvent : styles.eventCard
-      }
-    >
-      {showCoverImg && (
-        <img
-          className={
-            isSideUpcomingEvent ? styles.sideUpcomingEventImg : styles.rectangle
-          }
-          alt={coverImgAlt}
-          src={coverImgSrc}
-        />
-      )}
+const EventCard = React.memo(
+  ({
+    _id,
+    category,
+    eventName,
+    brief,
+    price,
+    date,
+    time,
+    location,
+    coverImgSrc,
+    coverImgAlt,
+    iconImageSrc,
+    iconImgAlt,
+    showCoverImg = true,
+    isSideUpcomingEvent = false,
+  }: EventCardProps) => {
+    // console.log(
+    //   'Event data received in EventCard:',
+    //   eventName,
+    //   location,
+    //   time,
+    //   date
+    // );
+
+    return (
       <div
         className={
-          isSideUpcomingEvent
-            ? styles.sideUpcomingEventFrame
-            : styles.eventCardFrame
+          isSideUpcomingEvent ? styles.sideUpcomingEvent : styles.eventCard
         }
       >
-        <div className={styles.eventCardFrameDiv}>
-          <div
-            className={isSideUpcomingEvent ? styles.sideEventTop : styles.top}
-          >
-            <div className={styles.eventType}>{eventCategory}</div>
-
-            <div
-              className={isSideUpcomingEvent ? styles.sideEvent : styles.event}
-            >
-              <div
-                className={
-                  isSideUpcomingEvent ? styles.sideEventInfo : styles.eventInfo
-                }
-              >
-                <IconInfo
-                  alt={iconImgAlt.calendar}
-                  src={iconImageSrc.calendar}
-                  text={eventDate}
-                />
-
-                <IconInfo
-                  alt={iconImgAlt.time}
-                  src={iconImageSrc.time}
-                  text={eventTime}
-                />
-
-                <IconInfo
-                  alt={iconImgAlt.location}
-                  src={iconImageSrc.location}
-                  text={eventLocation}
-                />
-              </div>
-              <div className={styles.eventNameWrapper}>
-                <div
-                  className={
-                    isSideUpcomingEvent
-                      ? styles.sideEventName
-                      : styles.eventName
-                  }
-                >
-                  {eventName}
-                </div>
-              </div>
-            </div>
-          </div>
-          <p
+        {showCoverImg && (
+          <img
             className={
               isSideUpcomingEvent
-                ? styles.sideEventDescription
-                : styles.eventDescription
+                ? styles.sideUpcomingEventImg
+                : styles.rectangle
             }
-          >
-            {eventBrief}
-          </p>
-        </div>
+            alt={coverImgAlt}
+            src={coverImgSrc}
+          />
+        )}
         <div
           className={
             isSideUpcomingEvent
-              ? styles.sideEventCardFrame2
-              : styles.evetnCardFrame2
+              ? styles.sideUpcomingEventFrame
+              : styles.eventCardFrame
           }
         >
-          <div
-            className={
-              isSideUpcomingEvent ? styles.sideEventPrice : styles.ticketPrice
-            }
-          >
-            <div className={styles.icon}>
-              <img
-                className={styles.vector2}
-                alt={iconImgAlt.ticket}
-                src={iconImageSrc.ticket}
-              />
+          <div className={styles.eventCardFrameDiv}>
+            <div
+              className={isSideUpcomingEvent ? styles.sideEventTop : styles.top}
+            >
+              <div className={styles.eventType}>{category}</div>
+
+              <div
+                className={
+                  isSideUpcomingEvent ? styles.sideEvent : styles.event
+                }
+              >
+                <div
+                  className={
+                    isSideUpcomingEvent
+                      ? styles.sideEventInfo
+                      : styles.eventInfo
+                  }
+                >
+                  <IconInfo
+                    alt={iconImgAlt.calendar}
+                    src={iconImageSrc.calendar}
+                    text={date}
+                  />
+
+                  <IconInfo
+                    alt={iconImgAlt.time}
+                    src={iconImageSrc.time}
+                    text={time}
+                  />
+
+                  <IconInfo
+                    alt={iconImgAlt.location}
+                    src={iconImageSrc.location}
+                    text={location}
+                  />
+                </div>
+                <div className={styles.eventNameWrapper}>
+                  <div
+                    className={
+                      isSideUpcomingEvent
+                        ? styles.sideEventName
+                        : styles.eventName
+                    }
+                  >
+                    {eventName}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className={styles.text2}>{eventPrice} LE/Person</div>
+            <p
+              className={
+                isSideUpcomingEvent
+                  ? styles.sideEventDescription
+                  : styles.eventDescription
+              }
+            >
+              {brief}
+            </p>
           </div>
           <div
             className={
               isSideUpcomingEvent
-                ? styles.sideEventDetailsBtn
-                : styles.detailsBtn
+                ? styles.sideEventCardFrame2
+                : styles.evetnCardFrame2
             }
           >
-            <Link
-              href="/eventinfo"
+            <div
               className={
-                isSideUpcomingEvent
-                  ? styles.sideEventBtnLink
-                  : styles.secondaryButtonInstance
+                isSideUpcomingEvent ? styles.sideEventPrice : styles.ticketPrice
               }
             >
-              View Details
-            </Link>
+              <div className={styles.icon}>
+                <img
+                  className={styles.vector2}
+                  alt={iconImgAlt.ticket}
+                  src={iconImageSrc.ticket}
+                />
+              </div>
+              <div className={styles.text2}>{price} LE/Person</div>
+            </div>
+            <div
+              className={
+                isSideUpcomingEvent
+                  ? styles.sideEventDetailsBtn
+                  : styles.detailsBtn
+              }
+            >
+              <Link
+                href="/eventinfo"
+                className={
+                  isSideUpcomingEvent
+                    ? styles.sideEventBtnLink
+                    : styles.secondaryButtonInstance
+                }
+              >
+                View Details
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+);
 
 export default EventCard;

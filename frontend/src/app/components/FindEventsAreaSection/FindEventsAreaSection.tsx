@@ -6,12 +6,21 @@ import MainContainer from '../MainContainer/MainContainer';
 import EventsCardsContainer from '../EventsCardsContainer/EventsCardsContainer';
 import SectionTop from '../SectionTop/SectionTop';
 
-function FindEventsAreaSection() {
+interface FindEventsAreaSectionProps {
+  isCategoryFilter?: boolean; // Accept the prop
+}
+
+function FindEventsAreaSection({
+  isCategoryFilter,
+}: FindEventsAreaSectionProps) {
   const [showButton, setShowButton] = useState(false);
 
   return (
     <section className={styles.findEventsAreaSection}>
-      <SectionTop labelText="Find Events in Your Area" />
+      <SectionTop
+        labelText="Find Events in Your Area"
+        isCategoryFilter={isCategoryFilter}
+      />
       <EventsCardsContainer showButton={showButton} />
     </section>
   );

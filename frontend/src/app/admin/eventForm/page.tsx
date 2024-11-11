@@ -10,14 +10,15 @@ import AdminSideLabel from '@/app/components/admin/AdminSideLabel/AdminSideLabel
 import EventCard from '@/app/components/EventsCardsContainer/EventCard/EventCard';
 import PrimaryButton from '@/app/components/PrimaryButton/PrimaryButon';
 import Link from 'next/link';
+import { log } from 'console';
 
 const EventForm = () => {
   const [eventName, setEventName] = useState('Preview  Event');
   const [category, setCategory] = useState('workshop');
-  const [eventPrice, setEventPrice] = useState('50');
-  const [date, setDate] = useState('11/5/2024');
-  const [time, setTime] = useState('16:30');
-  const [location, setLocation] = useState('Maadi');
+  const [price, setPrice] = useState('50');
+  const [date, setDate] = useState(new Date('2024-11-05'));
+  const [time, setTime] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
   const [image, setImage] = useState('');
   const [brief, setBrief] = useState(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.'
@@ -47,13 +48,16 @@ const EventForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
+    console.log('Form submitted');
+
+    const eventDate = new Date(date).toISOString();
 
     const eventData = new FormData();
 
     eventData.append('eventName', eventName);
     eventData.append('category', category);
-    eventData.append('eventPrice', eventPrice);
-    eventData.append('date', date);
+    eventData.append('price', price);
+    eventData.append('date', eventDate);
     eventData.append('time', time);
     eventData.append('location', location);
     eventData.append('brief', brief);
@@ -62,6 +66,18 @@ const EventForm = () => {
     if (image) {
       eventData.append('image', image); // Append the image file to FormData
     }
+
+    // console.log('Form data before sending:', {
+    //   eventName,
+    //   category,
+    //   price,
+    //   eventDate,
+    //   time,
+    //   location,
+    //   brief,
+    //   ticketsBooked,
+    //   status,
+    // });
 
     try {
       const response = await axios.post(
@@ -86,7 +102,7 @@ const EventForm = () => {
   const resetFields = () => {
     setEventName('');
     setCategory('');
-    setEventPrice('');
+    setPrice('');
     setDate('');
     setTime('');
     setLocation('');
@@ -142,8 +158,10 @@ const EventForm = () => {
                 <input
                   name="date"
                   type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={
+                    date instanceof Date ? date.toISOString().split('T')[0] : ''
+                  }
+                  onChange={(e) => setDate(new Date(e.target.value))}
                   required
                 />
               </div>
@@ -160,11 +178,11 @@ const EventForm = () => {
               <div className={styles.fieldBox}>
                 <div className={styles.placeholderTitle}>Price/Person</div>
                 <input
-                  name="eventPrice"
+                  name="price"
                   type="number"
-                  value={eventPrice}
+                  value={price}
                   placeholder="Enter event price"
-                  onChange={(e) => setEventPrice(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                   required
                 />
               </div>
@@ -232,12 +250,12 @@ const EventForm = () => {
           </div>
           <div className={styles.previewCont}>
             <EventCard
-              eventCategory={category}
+              category={category}
               eventName={eventName}
-              eventDate={date}
-              eventTime={time}
-              eventLocation={location}
-              eventPrice={eventPrice}
+              date={date}
+              time={time}
+              location={location}
+              price={price}
               coverImgSrc={imagePreview}
               coverImgAlt="Cover Image"
               iconImageSrc={{
@@ -252,7 +270,7 @@ const EventForm = () => {
                 location: 'Location Icon',
                 ticket: 'Ticket Icon',
               }}
-              eventBrief={brief}
+              brief={brief}
             />
           </div>
         </div>

@@ -13,7 +13,7 @@ const eventSchema = new mongoose.Schema({
     required: [true, 'An event must have a category'],
     enum: ['workshop', 'educational', 'cultural'],
   },
-  eventPrice: {
+  price: {
     type: Number,
     required: [true, 'An event must have a price'],
     min: [0, 'Price must be above zero'],

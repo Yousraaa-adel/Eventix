@@ -31,14 +31,6 @@ function EventMang() {
     fetchEvents();
   }, []);
 
-  // if (loading) {
-  //   return <div>Loading...</div>; // Show loading state
-  // }
-
-  // if (error) {
-  //   return <div>{error}</div>; // Show error message
-  // }
-
   return (
     <section className={styles.eventMan}>
       <AdminNavbar />
