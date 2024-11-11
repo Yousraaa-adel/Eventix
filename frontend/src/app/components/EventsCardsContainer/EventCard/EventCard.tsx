@@ -167,7 +167,7 @@ const EventCard = React.memo(
               }
             >
               <Link
-                href="/eventinfo"
+                href={`/eventInfo/${_id}`}
                 className={
                   isSideUpcomingEvent
                     ? styles.sideEventBtnLink

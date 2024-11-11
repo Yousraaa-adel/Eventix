@@ -1,17 +1,67 @@
-import Link from 'next/link';
-import styles from './page.module.css';
-import Navbar from '../components/NavBar/NavBar';
-import PageTopSection from '../components/PageTopSection/PageTopSection';
-import MainContainer from '../components/MainContainer/MainContainer';
-import SideLabel from '../components/SideLabel/SideLabel';
-import IconInfo from '../components/EventsCardsContainer/EventCard/IconInfo/IconInfo';
+'use client';
 
-function EventInfo() {
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import axios from 'axios';
+import styles from '../page.module.css';
+import Navbar from '../../components/NavBar/NavBar';
+import PageTopSection from '../../components/PageTopSection/PageTopSection';
+import MainContainer from '../../components/MainContainer/MainContainer';
+import SideLabel from '../../components/SideLabel/SideLabel';
+import IconInfo from '../../components/EventsCardsContainer/EventCard/IconInfo/IconInfo';
+import { EventCardProps } from '@/app/components/EventsCardsContainer/EventCard/EventCard';
+
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+function EventInfo({ params }: Props) {
+  const { id } = params; // Extract the id from the query params
+  const [eventData, setEventData] = useState<EventCardProps | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/events/${id}`
+        );
+
+        setEventData(response.data.data.event);
+      } catch (error) {
+        console.error('Error fetching event data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) fetchEventData();
+  }, [id]);
+
+  const formatDate = (date: string | Date): string => {
+    // If the date is already a string, return it as is.
+    if (typeof date === 'string') {
+      return date.split('T')[0]; // Ensure it's in y-m-d format
+    }
+
+    // If the date is a Date object, format it to y-m-d
+    const dateObj = new Date(date);
+    return dateObj.toISOString().split('T')[0];
+  };
+
+  console.log('Event data:', eventData);
+
+  if (loading) return <p>Loading event data...</p>;
+  if (!eventData) return <p>Event not found.</p>;
+
   return (
     <>
       <Navbar />
       <section className={styles.eventInfo}>
-        <PageTopSection labelText="Coffee 101" />
+        <PageTopSection labelText={eventData.eventName} />
         <MainContainer>
           <div className={styles.eventDetailsCont}>
             <div className={styles.cont}>
@@ -24,17 +74,17 @@ function EventInfo() {
                   <IconInfo
                     src="/images/calendarIcon.jpg"
                     alt="Calendar Icon"
-                    text="17/11/2024"
+                    text={formatDate(eventData.date)}
                   />
                   <IconInfo
                     src="/images/timeIcon.jpg"
                     alt="Time Icon"
-                    text="16:30"
+                    text={eventData.time}
                   />
                   <IconInfo
                     src="/images/locationIcon.jpg"
                     alt="Location Icon"
-                    text="Maadi"
+                    text={eventData.location}
                   />
                 </div>
                 <p>

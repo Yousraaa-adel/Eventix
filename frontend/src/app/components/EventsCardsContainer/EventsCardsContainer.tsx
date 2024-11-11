@@ -49,6 +49,7 @@ function EventsCardsContainer({
             return (
               <EventCard
                 key={eventItem._id}
+                _id={eventItem._id}
                 category={eventItem.category}
                 eventName={eventItem.eventName}
                 date={eventItem.date ? new Date(eventItem.date) : new Date()}

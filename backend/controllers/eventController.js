@@ -46,8 +46,9 @@ exports.getAllEvents = async (req, res) => {
 };
 
 exports.getEvent = async (req, res) => {
+  const eventId = req.params.id;
+
   try {
-    const eventId = req.params.id;
     const event = await Event.findById(eventId);
 
     res.status(200).json({
