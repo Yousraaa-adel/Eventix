@@ -11,6 +11,7 @@ export interface EventCardProps {
   price: string;
   date: string | Date;
   time: string;
+  status?: string;
   location: string;
   coverImgSrc?: string;
   coverImgAlt?: string;
@@ -40,6 +41,7 @@ const EventCard = React.memo(
     date,
     time,
     location,
+    status,
     coverImgSrc,
     coverImgAlt,
     iconImageSrc,

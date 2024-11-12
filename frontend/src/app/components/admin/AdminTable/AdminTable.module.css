@@ -30,6 +30,11 @@
   border-top-right-radius: 8px;
 }
 
+.tableCont tbody {
+  width: 100%;
+}
+
 .tableCont tbody tr {
   border-bottom: 1px solid #f69350;
+  /* width: 100%; */
 }

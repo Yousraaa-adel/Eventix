@@ -2,12 +2,15 @@
 
 import { ReactNode } from 'react';
 import styles from './AdminTable.module.css';
+import { EventCardProps } from '../../EventsCardsContainer/EventCard/EventCard';
+import { OrdersProps } from '@/app/admin/dashboard/page';
+import { redirect } from 'next/dist/server/api-utils';
 
-interface AdminTableProps {
+export type OrdersAndEventsProps = {
   attendeeNameTitle?: string;
   eventNameTitle?: string;
   ticketsBookedTitle?: string;
-  dateTitle?: string;
+  createdAtTitle?: string;
   categoryTitle?: string;
   locationTitle?: string;
   statusTitle?: string;
@@ -17,34 +20,34 @@ interface AdminTableProps {
   isEventMang?: boolean;
   isEventBookings?: boolean;
 
-  events: Array<{
-    eventName?: string;
-    eventPrice?: string;
-    ticketsBooked?: string;
-    date?: string;
-    time?: string;
-    category?: string;
-    location?: string;
-    brief?: string;
-    status?: string;
-  }>;
-}
+  orders: OrdersProps[];
+};
 
 function AdminTable({
-  events,
+  orders,
   attendeeNameTitle = 'Attendee Name',
   eventNameTitle = 'Event Name',
   ticketsBookedTitle = 'Tickets Booked',
-  dateTitle = 'Date',
+  createdAtTitle = 'Created At',
   categoryTitle = 'Category',
   locationTitle = 'Location',
   statusTitle = 'Status',
   actionTitle = 'Action',
-  attendeeName,
   action,
   isEventMang = false,
   isEventBookings = false,
-}: AdminTableProps) {
+}: OrdersAndEventsProps) {
+  const formatDate = (date: string | undefined) => {
+    if (!date) return 'Invalid Date'; // Fallback if date is undefined or null
+
+    const dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) {
+      return 'Invalid Date'; // Return a fallback if date is invalid
+    }
+
+    return dateObj.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+  };
+
   return (
     <table className={styles.tableCont}>
       <thead>
@@ -52,10 +55,10 @@ function AdminTable({
           <th>{isEventMang ? eventNameTitle : attendeeNameTitle}</th>
           <th>{isEventMang ? categoryTitle : eventNameTitle}</th>
           <th>{isEventMang ? ticketsBookedTitle : ticketsBookedTitle}</th>
-          <th>{isEventMang ? locationTitle : dateTitle}</th>
+          <th>{isEventMang ? locationTitle : createdAtTitle}</th>
           {isEventMang && (
             <>
-              <th>{dateTitle}</th>
+              <th>{createdAtTitle}</th>
               <th>{statusTitle}</th>
               {/* <th>{actionTitle}</th> */}
             </>
@@ -63,109 +66,40 @@ function AdminTable({
         </tr>
       </thead>
       <tbody>
-        {events && events.length > 0 ? (
-          events.map((event) => (
-            <tr key={event._id}>
+        {orders && orders.length > 0 ? (
+          orders.map((order) => (
+            <tr key={order._id}>
               <td className={styles.tdColor}>
-                {isEventMang ? event.eventName : attendeeName}
+                {isEventMang
+                  ? order.eventId.eventName
+                  : `${order.firstName} ${order.lastName}`}
               </td>
               <td className={styles.tdColor}>
-                {isEventMang ? event.category : event.eventName}
+                {isEventMang ? order.eventId.category : order.eventId.eventName}
               </td>
-              <td className={styles.tdColor}>{event.ticketsBooked}</td>
+              <td className={styles.tdColor}>{order.ticketsBooked}</td>
               <td className={styles.tdColor}>
-                {isEventMang ? event.location : event.date}
+                {isEventMang
+                  ? order.eventId.location
+                  : formatDate(order.createdAt)}
               </td>
               {isEventMang && (
                 <>
-                  <td className={styles.tdColor}>{event.date}</td>
-                  <td className={styles.tdColor}>{event.status}</td>
+                  <td className={styles.tdColor}>
+                    {formatDate(order.createdAt)}
+                  </td>
+                  <td className={styles.tdColor}>{order.eventId.status}</td>
                 </>
               )}
             </tr>
           ))
         ) : (
           <tr>
-            <td className={styles.tdColor}>No events available</td>
+            <td className={styles.tdColor} colSpan={6}>
+              No events available
+            </td>
           </tr>
         )}
-
-        {/* <tr>
-          <td className={styles.tdColor}>
-            {isEventMang ? eventName : attendeeName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? category : eventName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? ticketsBooked : ticketsBooked}
-          </td>
-          <td className={styles.tdColor}>{isEventMang ? location : date}</td>
-          {isEventMang && (
-            <>
-              <td className={styles.tdColor}>{date}</td>
-              <td className={styles.tdColor}>{status}</td>
-              <td className={styles.tdColor}>{action}</td>
-            </>
-          )}
-        </tr>
-        <tr>
-          <td className={styles.tdColor}>
-            {isEventMang ? eventName : attendeeName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? category : eventName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? ticketsBooked : ticketsBooked}
-          </td>
-          <td className={styles.tdColor}>{isEventMang ? location : date}</td>
-          {isEventMang && (
-            <>
-              <td className={styles.tdColor}>{date}</td>
-              <td className={styles.tdColor}>{status}</td>
-              <td className={styles.tdColor}>{action}</td>
-            </>
-          )}
-        </tr>
-        <tr>
-          <td className={styles.tdColor}>
-            {isEventMang ? eventName : attendeeName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? category : eventName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? ticketsBooked : ticketsBooked}
-          </td>
-          <td className={styles.tdColor}>{isEventMang ? location : date}</td>
-          {isEventMang && (
-            <>
-              <td className={styles.tdColor}>{date}</td>
-              <td className={styles.tdColor}>{status}</td>
-              <td className={styles.tdColor}>{action}</td>
-            </>
-          )}
-        </tr>
-        <tr>
-          <td className={styles.tdColor}>
-            {isEventMang ? eventName : attendeeName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? category : eventName}
-          </td>
-          <td className={styles.tdColor}>
-            {isEventMang ? ticketsBooked : ticketsBooked}
-          </td>
-          <td className={styles.tdColor}>{isEventMang ? location : date}</td>
-          {isEventMang && (
-            <>
-              <td className={styles.tdColor}>{date}</td>
-              <td className={styles.tdColor}>{status}</td>
-              <td className={styles.tdColor}>{action}</td>
-            </>
-          )}
-        </tr> */}
       </tbody>
     </table>
   );

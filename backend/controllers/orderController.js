@@ -13,7 +13,12 @@ exports.checkID = async (req, res, next, val) => {
 
 exports.getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find()
+      .populate(
+        'eventId',
+        'eventName date category price location ticketsBooked status time',
+      )
+      .exec(); // Populate event fields
 
     res.status(200).json({
       status: 'success',
@@ -34,7 +39,12 @@ exports.getOrder = async (req, res) => {
   const orderId = req.params.id;
 
   try {
-    const order = await Order.findById(orderId);
+    const order = await Order.findById(orderId)
+      .populate(
+        'eventId',
+        'eventName date category price location ticketsBooked status time',
+      )
+      .exec(); // Populate event fields
 
     res.status(200).json({
       status: 'success',
