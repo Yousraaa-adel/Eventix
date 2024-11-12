@@ -31,7 +31,7 @@ router
 router
   .route('/:id')
   .get(eventController.getEvent)
-  .patch(eventController.updateEvent)
+  .patch(upload.single('image'), eventController.updateEvent)
   .delete(eventController.deleteEvent);
 
 module.exports = router;

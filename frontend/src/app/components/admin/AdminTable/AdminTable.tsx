@@ -5,6 +5,7 @@ import styles from './AdminTable.module.css';
 import { EventCardProps } from '../../EventsCardsContainer/EventCard/EventCard';
 import { OrdersProps } from '@/app/admin/dashboard/page';
 import { redirect } from 'next/dist/server/api-utils';
+import Link from 'next/link';
 
 export type OrdersAndEventsProps = {
   attendeeNameTitle?: string;
@@ -60,7 +61,7 @@ function AdminTable({
             <>
               <th>{createdAtTitle}</th>
               <th>{statusTitle}</th>
-              {/* <th>{actionTitle}</th> */}
+              <th>{actionTitle}</th>
             </>
           )}
         </tr>
@@ -89,6 +90,22 @@ function AdminTable({
                     {formatDate(order.createdAt)}
                   </td>
                   <td className={styles.tdColor}>{order.eventId.status}</td>
+                  <td className={`${styles.tdColor}`}>
+                    <div className={styles.butnsContainer}>
+                      <Link
+                        href={`/admin/eventForm?eventId=${order.eventId._id}`}
+                        passHref
+                      >
+                        <img src="/images/editIcon.png" alt="Edit" />
+                      </Link>
+                      <Link
+                        href={`/admin/eventForm?eventId=${order.eventId._id}`}
+                        passHref
+                      >
+                        <img src="/images/deleteIcon.png" alt="Delete" />
+                      </Link>
+                    </div>
+                  </td>
                 </>
               )}
             </tr>

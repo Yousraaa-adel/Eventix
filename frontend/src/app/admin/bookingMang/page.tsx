@@ -9,7 +9,7 @@ import PrimaryButton from '@/app/components/PrimaryButton/PrimaryButon';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function EventMang() {
+function BookingMang() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -37,10 +37,10 @@ function EventMang() {
       <MainContainer>
         <div className={styles.eventsListPart}>
           <div className={styles.eventListTop}>
-            <AdminSideLabel labelText="Events List" />
-            <div className={styles.addEventBtn}>
+            <AdminSideLabel labelText="Bookings List" />
+            {/* <div className={styles.addEventBtn}>
               <PrimaryButton href="/admin/eventForm" children="Add Event" />
-            </div>
+            </div> */}
           </div>
           <div className={styles.tableSection}>
             <AdminTable orders={orders} isEventMang={true} />
@@ -51,4 +51,4 @@ function EventMang() {
   );
 }
 
-export default EventMang;
+export default BookingMang;

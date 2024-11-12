@@ -46,17 +46,17 @@ function NavLinks() {
           Event Management
         </Link>
       </li>
-      <li className={styles.adminNavBtn}>
+      {/* <li className={styles.adminNavBtn}>
         <Link
           href="/admin/eventForm"
           className={pathname === '/events' ? 'active' : ''}
         >
           Event Form
         </Link>
-      </li>
+      </li> */}
       <li className={styles.adminNavBtn}>
         <Link
-          href="/admin/eventBookings"
+          href="/admin/bookingMang"
           className={pathname === '/termsofuse' ? 'active' : ''}
         >
           Booking Management

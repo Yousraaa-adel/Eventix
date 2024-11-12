@@ -93,9 +93,19 @@ exports.createEvent = async (req, res) => {
 exports.updateEvent = async (req, res) => {
   try {
     const eventId = req.params.id;
-    const eventToUpdate = await Event.findByIdAndUpdate(eventId, req.body);
 
-    eventToUpdate.save();
+    // Use 'new: true' to return the updated document after the update
+    const eventToUpdate = await Event.findByIdAndUpdate(eventId, req.body, {
+      new: true, // Ensure that the updated event is returned
+      runValidators: true, // Optional: this ensures that the update respects your validation rules
+    });
+
+    if (!eventToUpdate) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Event not found',
+      });
+    }
 
     res.status(200).json({
       status: 'success',
@@ -106,7 +116,7 @@ exports.updateEvent = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'fail',
-      message: err,
+      message: err.message,
     });
   }
 };
