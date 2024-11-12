@@ -2,7 +2,7 @@ import styles from './SectionTop.module.css';
 import SectionLabel from './SectionLabel/SectionLabel';
 import Filters from '../UpcomingEventsSection/Filters/Filters';
 
-interface SectionTopProps {
+export interface SectionTopProps {
   labelText: string;
   isCategoryFilter?: boolean; // Accept the prop
   onChoiceClick: (choice: string) => void;

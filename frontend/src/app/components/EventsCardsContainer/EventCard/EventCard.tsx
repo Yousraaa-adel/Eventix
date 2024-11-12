@@ -47,14 +47,6 @@ const EventCard = React.memo(
     showCoverImg = true,
     isSideUpcomingEvent = false,
   }: EventCardProps) => {
-    // console.log(
-    //   'Event data received in EventCard:',
-    //   eventName,
-    //   location,
-    //   time,
-    //   date
-    // );
-
     return (
       <div
         className={

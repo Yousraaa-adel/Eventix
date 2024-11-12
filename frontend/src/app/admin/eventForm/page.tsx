@@ -67,18 +67,6 @@ const EventForm = () => {
       eventData.append('image', image); // Append the image file to FormData
     }
 
-    // console.log('Form data before sending:', {
-    //   eventName,
-    //   category,
-    //   price,
-    //   eventDate,
-    //   time,
-    //   location,
-    //   brief,
-    //   ticketsBooked,
-    //   status,
-    // });
-
     try {
       const response = await axios.post(
         'http://localhost:5000/api/v1/events',

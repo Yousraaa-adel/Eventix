@@ -23,6 +23,12 @@ function EventInfo({ params }: Props) {
   const [eventData, setEventData] = useState<EventCardProps | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [count, setCount] = useState(1);
+
+  const handleIncrement = () => setCount((prevCount) => prevCount + 1);
+  const handleDecrement = () =>
+    setCount((prevCount) => (prevCount > 1 ? prevCount - 2 : 1)); // Prevent negative values
+
   useEffect(() => {
     const fetchEventData = async () => {
       try {
@@ -52,7 +58,7 @@ function EventInfo({ params }: Props) {
     return dateObj.toISOString().split('T')[0];
   };
 
-  console.log('Event data:', eventData);
+  // console.log('Event data:', eventData);
 
   if (loading) return <p>Loading event data...</p>;
   if (!eventData) return <p>Event not found.</p>;
@@ -111,7 +117,9 @@ function EventInfo({ params }: Props) {
                   <div className={styles.ticketCont}>
                     <div className={styles.priceCont}>
                       <span className={styles.priceTitle}>Ticket Price</span>
-                      <span className={styles.price}>40 LE/Person</span>
+                      <span className={styles.price}>
+                        {eventData.price} LE/Person
+                      </span>
                     </div>
                     <div className={styles.ticketsNeededCont}>
                       <span className={styles.neededTitle}>Tickets Left</span>
@@ -121,13 +129,25 @@ function EventInfo({ params }: Props) {
                   <div className={styles.counterCont}>
                     <span className={styles.neededTitle}>Tickets Needed</span>
                     <div className={styles.counter}>
-                      <span className={styles.counterMore}>+</span>
-                      <span className={styles.counterCount}>0</span>
-                      <span className={styles.counterLess}>-</span>
+                      <button
+                        className={styles.counterLess}
+                        type="button"
+                        onClick={() => handleDecrement()}
+                      >
+                        -
+                      </button>
+                      <span className={styles.counterCount}>{count}</span>
+                      <button
+                        className={styles.counterMore}
+                        type="button"
+                        onClick={() => handleIncrement()}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                   <div className={styles.confirmBtnCont}>
-                    <Link href="/confirmbooking">
+                    <Link href={`/confirmbooking/${id}?ticketCount=${count}`}>
                       <button type="submit">Go to Target Page</button>
                     </Link>
                   </div>

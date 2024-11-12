@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const eventRouter = require('./routes/eventRoutes');
 const userRouter = require('./routes/userRoutes');
+const orderRouter = require('./routes/orderRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 // ROUTES (Mounting Routes)
 app.use('/api/v1/events', eventRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/orders', orderRouter);
 
 // Unhandled Routes
 app.all('*', (req, res, next) => {

@@ -2,7 +2,7 @@ import styles from './PageTopSection.module.css';
 import PageTopLabel from './PageTopLabel/PageTopLabel';
 
 interface PageTopSectionProp {
-  labelText?: string;
+  labelText?: string | null;
   isEventForm?: boolean;
 }
 

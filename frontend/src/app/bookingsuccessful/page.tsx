@@ -1,16 +1,24 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import axios from 'axios';
 import Link from 'next/link';
 import styles from './page.module.css';
 import Navbar from '../components/NavBar/NavBar';
 import PageTopSection from '../components/PageTopSection/PageTopSection';
 import MainContainer from '../components/MainContainer/MainContainer';
-import Footer from '../components/Footer/Footer';
+import { EventCardProps } from '@/app/components/EventsCardsContainer/EventCard/EventCard';
 
 function BookingSuccessful() {
+  const eventName = localStorage.getItem('eventName');
+  console.log(eventName);
+
   return (
     <>
       <Navbar />
       <section className={styles.bookinfSuccessful}>
-        <PageTopSection labelText="Booking for Coffee 101" />
+        <PageTopSection labelText={eventName} />
         <MainContainer>
           <div className={styles.smallCont}>
             <div className={styles.iconCont}>
