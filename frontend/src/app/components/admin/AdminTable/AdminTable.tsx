@@ -1,5 +1,7 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { ReactNode } from 'react';
 import styles from './AdminTable.module.css';
 import { EventCardProps } from '../../EventsCardsContainer/EventCard/EventCard';
@@ -71,20 +73,24 @@ function AdminTable({
           orders.map((order) => (
             <tr key={order._id}>
               <td className={styles.tdColor}>
-                {isEventMang
-                  ? order.eventId.eventName
+                {isEventMang && order.eventId
+                  ? order.eventId.eventName // Only access eventName if eventId exists
                   : `${order.firstName} ${order.lastName}`}
               </td>
               <td className={styles.tdColor}>
-                {isEventMang ? order.eventId.category : order.eventId.eventName}
+                {isEventMang && order.eventId
+                  ? order.eventId.category // Only access category if eventId exists
+                  : order.eventId
+                  ? order.eventId.eventName
+                  : 'No event name'}
               </td>
               <td className={styles.tdColor}>{order.ticketsBooked}</td>
               <td className={styles.tdColor}>
-                {isEventMang
-                  ? order.eventId.location
+                {isEventMang && order.eventId
+                  ? order.eventId.location // Only access location if eventId exists
                   : formatDate(order.createdAt)}
               </td>
-              {isEventMang && (
+              {isEventMang && order.eventId && (
                 <>
                   <td className={styles.tdColor}>
                     {formatDate(order.createdAt)}
@@ -98,12 +104,28 @@ function AdminTable({
                       >
                         <img src="/images/editIcon.png" alt="Edit" />
                       </Link>
-                      <Link
-                        href={`/admin/eventForm?eventId=${order.eventId._id}`}
-                        passHref
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={async () => {
+                          try {
+                            // Send DELETE request to backend to delete the order
+                            const response = await axios.delete(
+                              `http://localhost:5000/api/v1/orders/${order._id}`
+                            );
+                            console.log('Order deleted:', response.data);
+
+                            // Update local state to remove the deleted order from UI
+                            // setLocalOrders((prevOrders) =>
+                            //   prevOrders.filter((o) => o._id !== order._id)
+                            // );
+                          } catch (error) {
+                            console.error('Error deleting order:', error);
+                            alert('Failed to delete order');
+                          }
+                        }}
                       >
                         <img src="/images/deleteIcon.png" alt="Delete" />
-                      </Link>
+                      </button>
                     </div>
                   </td>
                 </>
