@@ -31,19 +31,18 @@ function Dashboard() {
   const [orders, setOrders] = useState<OrdersProps[]>([]); // State to hold the fetched orders
 
   // Log to check if it's reaching auth
-  console.log('User:', user);
+  console.log('Dashboard user:', user);
   console.log('Loading:', loading);
 
   // Ensure that the component only fetches orders after authentication is done
   useEffect(() => {
-    console.log('2');
-    if (loading) return; // Wait until loading is complete
-
-    if (!user) {
-      console.log('Not a user. Redirecting to login ..');
-      router.push('/admin/login'); // Redirect if not authenticated
+    if (!loading) {
+      if (!user) {
+        console.log('Not a user. Redirecting to login ..');
+        router.push('/admin/login'); // Redirect if not authenticated
+      }
     }
-  }, [user, loading, router]); // Dependency on user and loading state
+  }, [user, loading, router]); // Ensure loading is complete before checking `user`
 
   // Fetch orders after authentication is done
   useEffect(() => {

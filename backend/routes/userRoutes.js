@@ -10,10 +10,12 @@ router.post('/login', authController.login);
 // Route to check if user is authenticated
 router.get('/check-auth', authController.protect, (req, res) => {
   // If the user reaches here, they are authenticated
+  console.log('Printing token from check-auth route:', req.cookies.jwt);
   return res.status(200).json({
     status: 'success',
     message: 'User is authenticated',
     user: req.user,
+    token: req.cookies.jwt,
   });
 });
 

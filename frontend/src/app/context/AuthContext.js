@@ -12,6 +12,9 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // use as context because we are use in many places :)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   // Check if the user is authenticated when the component mounts
   useEffect(() => {
@@ -34,7 +37,7 @@ export const AuthProvider = ({ children }) => {
         console.log('Success login from Auth. Redirecting ..');
 
         // Redirect to dashboard after login success
-        // router.push('/admin/dashboard');
+        router.push('/admin/dashboard');
       } else {
         setUser(null); // Set user to null if not authenticated
       }
@@ -46,8 +49,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = (userData) => {
+  const login = async (userData) => {
     setUser(userData); // Manually log the user in
+    await checkAuth(); // Trigger checkAuth immediately after login
   };
 
   const logout = async () => {
@@ -55,14 +59,19 @@ export const AuthProvider = ({ children }) => {
       // Call backend to clear cookie
       const response = await axios.get(
         'http://localhost:5000/api/v1/users/logout',
-        {},
+        // {},
         {
           withCredentials: true, // Ensure cookies are sent
         }
       );
       // console.log(response.data.message);
 
-      // setUser(null); // Clear user data on the frontend
+      // reset all to start again :)
+
+      setUser(null); // Clear user data on the frontend
+      setEmail('');
+      setPassword('');
+
       // console.log('Logged out from frontend and backend');
       // await checkAuth();
     } catch (error) {
@@ -71,7 +80,19 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        logout,
+        email,
+        setEmail,
+        password,
+        setUser,
+        setPassword,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

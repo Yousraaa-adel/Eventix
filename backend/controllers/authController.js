@@ -46,8 +46,8 @@ const createSendToken = (user, statusCode, res) => {
 // Protect Routes
 exports.protect = async (req, res, next) => {
   let token;
-  console.log('in protection route');
-  console.log(req.cookies.jwt);
+  console.log('in protection route. Token:', req.cookies.jwt);
+  // console.log(req.cookies.jwt);
   // Check for token in Authorization header or cookies
   if (
     req.headers.authorization &&

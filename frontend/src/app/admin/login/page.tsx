@@ -5,11 +5,11 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import PrimaryButton from '@/app/components/PrimaryButton/PrimaryButon';
 import styles from './page.module.css';
+import { useAuth } from '@/app/context/AuthContext';
 
 function Login() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { setUser, email, setEmail, password, setPassword } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ function Login() {
 
       // Check if the response is successful
       if (response.status === 200) {
+        setUser(response.data.data.user); // Set the user data from the response
         console.log('Logged in from Login page. Redirecting ..');
         router.push('/admin/dashboard'); // Redirect to the dashboard
       }
