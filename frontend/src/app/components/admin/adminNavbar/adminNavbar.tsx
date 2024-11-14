@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuth } from '../../../context/AuthContext';
+import axios from 'axios';
 import styles from './adminNavbar.module.css';
 
 function AdminNavbar() {
@@ -27,6 +29,21 @@ function Logo() {
 
 function NavLinks() {
   const pathname = usePathname();
+  const { logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      console.log(
+        'Waiting for the loggings from backend right after this message'
+      );
+      await logout(); // Call the logout from AuthContext
+      console.log('Logged out from frontend. Redirecting to login...');
+      router.push('/admin/login'); // Redirect to login page after logging out
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   return (
     <ul className={styles.navLinks}>
@@ -63,12 +80,9 @@ function NavLinks() {
         </Link>
       </li>
       <li className={styles.adminNavBtn}>
-        <Link
-          href="/admin/logout"
-          className={pathname === '/support' ? 'active' : ''}
-        >
-          <img src="/images/logoutIcon.jpg" />
-        </Link>
+        <button onClick={handleLogout} className={styles.logoutBtn}>
+          <img src="/images/logoutIcon.jpg" alt="Logout" />
+        </button>
       </li>
     </ul>
   );

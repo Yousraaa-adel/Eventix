@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const eventController = require('../controllers/eventController');
+const authController = require('../controllers/authController');
 
 // Set up storage engine for multer
 const storage = multer.diskStorage({
@@ -26,12 +27,20 @@ router.param('id', eventController.checkID);
 router
   .route('/')
   .get(eventController.getAllEvents)
-  .post(upload.single('image'), eventController.createEvent);
+  .post(
+    authController.protect,
+    upload.single('image'),
+    eventController.createEvent,
+  );
 
 router
   .route('/:id')
   .get(eventController.getEvent)
-  .patch(upload.single('image'), eventController.updateEvent)
-  .delete(eventController.deleteEvent);
+  .patch(
+    authController.protect,
+    upload.single('image'),
+    eventController.updateEvent,
+  )
+  .delete(authController.protect, eventController.deleteEvent);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const eventRouter = require('./routes/eventRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -14,9 +15,13 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// 2) COOKIE PARSER MIDDLEWARE
+app.use(cookieParser());
+
 app.use(
   cors({
     origin: 'http://localhost:3000',
+    credentials: true,
   }),
 );
 

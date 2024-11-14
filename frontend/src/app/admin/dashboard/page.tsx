@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../context/AuthContext';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './page.module.css';
@@ -24,18 +26,31 @@ export type OrdersProps = {
 };
 
 function Dashboard() {
-  const [orders, setOrders] = useState([]); // State to hold the fetched orders
-  // const [firstName, setFirstName] = useState('');
-  // const [LastName, setLastName] = useState('');
-  // const [event, setEventName] = useState('');
-  // const [bookingDate, setBookingDate] = useState();
+  const { user, loading } = useAuth();
+  const router = useRouter();
+  const [orders, setOrders] = useState<OrdersProps[]>([]); // State to hold the fetched orders
 
+  // Log to check if it's reaching auth
+  console.log('User:', user);
+  console.log('Loading:', loading);
+
+  // Ensure that the component only fetches orders after authentication is done
+  useEffect(() => {
+    console.log('2');
+    if (loading) return; // Wait until loading is complete
+
+    if (!user) {
+      console.log('Not a user. Redirecting to login ..');
+      router.push('/admin/login'); // Redirect if not authenticated
+    }
+  }, [user, loading, router]); // Dependency on user and loading state
+
+  // Fetch orders after authentication is done
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/orders`);
+        const response = await axios.get('http://localhost:5000/api/v1/orders');
         setOrders(response.data.data.orders);
-
         console.log(response.data.data.orders);
       } catch (error) {
         console.error('Error fetching orders data:', error);
@@ -43,7 +58,17 @@ function Dashboard() {
     };
 
     fetchOrders();
-  }, []);
+  }, [user]); // Fetch orders only when user state changes
+
+  // Handle loading state
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // Handle redirection when there's no user
+  if (!user) {
+    return <div>Redirecting to login...</div>;
+  }
 
   return (
     <section className={styles.dashboard}>

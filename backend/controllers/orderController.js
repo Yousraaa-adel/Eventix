@@ -1,4 +1,6 @@
 const Order = require('../models/orderModel');
+const sendEmail = require('../utls/email');
+const QRCode = require('qrcode');
 
 exports.checkID = async (req, res, next, val) => {
   const order = await Order.findById(val);
@@ -62,11 +64,29 @@ exports.getOrder = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
   console.log('Data received for order creation:', req.body);
-  // console.log('Uploaded file:', req.file);
 
   try {
+    // Create the order
     const order = await Order.create({
       ...req.body,
+    });
+    console.log(req.body.eventId.eventName);
+
+    // Generate QR code (e.g., using order or event details)
+    const qrData = `Email: ${req.body.email}, Name: ${req.body.firstName} ${req.body.lastName}`; // QR code link
+    const qrCodeBuffer = await QRCode.toBuffer(qrData);
+
+    // Send the email with the QR code as an attachment
+    await sendEmail({
+      email: req.body.email,
+      subject: `QR Code for Event`,
+      message: `Please find your QR code for the event.`,
+      html: `
+        <h2>Your QR Code for the Event</h2>
+        <p>Scan this QR code to access your event information:</p>
+        <img src="cid:qrCodeImage" alt="Event QR Code" height="300" width="300" />
+      `,
+      attachment: qrCodeBuffer, // Pass the QR code buffer directly
     });
 
     res.status(201).json({

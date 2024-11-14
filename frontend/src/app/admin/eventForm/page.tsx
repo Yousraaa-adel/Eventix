@@ -20,6 +20,7 @@ const EventForm = ({ eventId: propEventId }: Props) => {
   const searchParams = useSearchParams();
   const [eventId, setEventId] = useState<string | null>(propEventId || null);
   const [loading, setLoading] = useState(true);
+  const [formattedDate, setFormattedDate] = useState('');
 
   useEffect(() => {
     const searchEventId = searchParams.get('eventId');
@@ -52,7 +53,7 @@ const EventForm = ({ eventId: propEventId }: Props) => {
           const response = await axios.get(
             `http://localhost:5000/api/v1/events/${eventId}`
           );
-          const event = response.data.data;
+          const event = response.data.data.event;
 
           console.log('Fetched event data:', event);
 
@@ -118,7 +119,7 @@ const EventForm = ({ eventId: propEventId }: Props) => {
     if (eventName) eventData.append('eventName', eventName);
     if (category) eventData.append('category', category);
     if (price) eventData.append('price', price);
-    if (date) eventData.append('date', new Date(date).toISOString());
+    if (date) eventData.append('date', date);
     if (time) eventData.append('time', time);
     if (location) eventData.append('location', location);
     if (brief) eventData.append('brief', brief);
@@ -154,6 +155,27 @@ const EventForm = ({ eventId: propEventId }: Props) => {
         console.error('Error response:', error.response.data);
       }
     }
+  };
+
+  const formatDate = (date: string | undefined) => {
+    if (!date) return 'Invalid Date'; // Fallback if date is undefined or null
+
+    const dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) {
+      return 'Invalid Date'; // Return a fallback if date is invalid
+    }
+
+    return dateObj.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+  };
+
+  // Ensure date is formatted correctly on input change
+  const handleDateChange = (e) => {
+    const rawDate = e.target.value;
+    const dateObj = new Date(rawDate);
+    const formattedDate = !isNaN(dateObj.getTime())
+      ? dateObj.toISOString().split('T')[0]
+      : ''; // Format if valid
+    setDate(formattedDate); // Set formatted date
   };
 
   return (
@@ -199,8 +221,8 @@ const EventForm = ({ eventId: propEventId }: Props) => {
                 <input
                   name="date"
                   type="date"
-                  value={date ? date.split('T')[0] : ''}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={date}
+                  onChange={handleDateChange}
                   required
                 />
               </div>
