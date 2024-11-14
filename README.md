@@ -25,7 +25,6 @@ Eventix is designed to streamline event management for both organizers and atten
 - **QR Code Ticketing**: Generate and email QR codes for easy check-in at events.
 - **RSVP and Ticket Booking**: Attendees can book tickets and view booking confirmations.
 - **Email Notifications**: Automated email notifications for successful ticket bookings.
-- **Map Integration**: View event locations on an interactive map.
 - **Admin Dashboard**: Allows admins to manage events, view RSVPs, and update event details.
 
 ## Tech Stack
